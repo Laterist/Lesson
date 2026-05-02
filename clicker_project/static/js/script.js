@@ -92,6 +92,16 @@ document.getElementById('click-btn').addEventListener('click', async () => {
     }
 });
 
+// Обнуление
+document.getElementById('super-btn').addEventListener('click', async () => {
+    const res = await apiRequest('profile/', 'POST');
+    if (res.ok) {
+        document.getElementById('click-count').innerText = '0';
+    } else {
+        alert('Ошибка при обнулении');
+    }
+});
+
 // Выход
 document.getElementById('logout-btn').addEventListener('click', () => {
     clearTokens();
