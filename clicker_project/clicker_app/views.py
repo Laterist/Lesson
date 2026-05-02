@@ -20,6 +20,12 @@ class ProfileView(APIView):
 
     def post(self, request):
         profile = request.user.profile
+
+        if 'reset' in request.path:
+            profile.clicks = 0
+            profile.save()
+            return Response({'clicks': 0, 'message': 'Сброшено'})
+        
         profile.clicks += 1
         profile.save()
         return Response({'clicks': profile.clicks})
